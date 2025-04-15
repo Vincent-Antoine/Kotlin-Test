@@ -23,11 +23,17 @@ jobs:
       - name: ⚙️ Configurer Gradle
         uses: gradle/gradle-build-action@v2
 
-      - name: 🛠️ Compiler et lancer les tests
-        run: ./gradlew clean build
+      - name: 🛠️ Compiler, tester et générer la couverture JaCoCo
+        run: ./gradlew clean test jacocoTestReport
 
-      - name: 📊 Publier les rapports de test
+      - name: 📊 Publier les rapports de test (JUnit)
         uses: actions/upload-artifact@v4
         with:
           name: rapport-tests
           path: build/test-results/test
+
+      - name: 📈 Publier le rapport de couverture JaCoCo
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-couverture
+          path: build/reports/jacoco/test/html
