@@ -4,7 +4,17 @@ plugins {
 	id("org.springframework.boot") version "3.4.4"
 	id("io.spring.dependency-management") version "1.1.7"
 	id("jacoco")
+	id("info.solidsoft.pitest") version "1.15.0"
 
+}
+
+pitest {
+	junit5PluginVersion.set("1.2.1")
+	targetClasses.set(listOf("com.example.demo.domain.*"))
+	targetTests.set(listOf("com.example.demo.domain.*"))
+	threads.set(2)
+	outputFormats.set(listOf("HTML"))
+	mutationThreshold.set(80)
 }
 
 group = "com.example"

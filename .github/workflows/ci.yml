@@ -37,3 +37,12 @@ jobs:
         with:
           name: rapport-couverture
           path: build/reports/jacoco/test/html
+
+      - name: 🧬 Lancer les tests de mutation PIT
+        run: ./gradlew pitest
+
+      - name: 🧪 Publier le rapport de mutation PIT
+        uses: actions/upload-artifact@v4
+        with:
+          name: rapport-mutation
+          path: build/reports/pitest
