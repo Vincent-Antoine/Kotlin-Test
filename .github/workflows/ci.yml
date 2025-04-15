@@ -23,6 +23,9 @@ jobs:
       - name: ⚙️ Configurer Gradle
         uses: gradle/gradle-build-action@v2
 
+      - name: 🧼 Donner les droits d’exécution à gradlew
+        run: chmod +x ./gradlew
+
       - name: 🛠️ Compiler, tester et générer la couverture JaCoCo
         run: ./gradlew clean test jacocoTestReport
 
